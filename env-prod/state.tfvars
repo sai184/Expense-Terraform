@@ -1,3 +1,3 @@
 bucket = "terraform523"
-key    = "Expense-terraform/dev/terraform.tfstate"
+key    = "Expense-terraform/prod/terraform.tfstate"
 region = "us-east-1"
