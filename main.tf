@@ -6,4 +6,5 @@ module "vpc" {
   azs = var.azs
   default_vpc_id = var.default_vpc_id
   default_vpc_id_cidr = var.default_vpc_id_cidr
+  default_route_table_id = var.default_route_table_id
 }
