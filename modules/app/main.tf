@@ -12,6 +12,14 @@ resource "aws_security_group" "security_group" {
 
   }
 
+  ingress {
+    description = "SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = var.bastion_node_cidr  #for baston node which is workstation we are allowing SSH connection
+
+  }
   egress {
     from_port   = 0
     to_port     = 0
