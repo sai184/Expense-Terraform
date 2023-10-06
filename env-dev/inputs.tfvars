@@ -12,4 +12,3 @@ bastion_node_cidr     = [ "172.31.29.106/32" ] #security group expects list only
 desired_capacity       = 1
 max_size               = 1
 min_size               = 1
-#instance_class         = "db.t3.medium"
