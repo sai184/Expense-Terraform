@@ -8,4 +8,4 @@ account_id             = "221453714752"
 default_vpc_id         = "vpc-0c8040dc69ef7d5e2"
 default_vpc_id_cidr    = "172.31.0.0/16"
 default_route_table_id = "rtb-0709be1921d4a4598"
-bastion_node_cidr     = [ "172.31.29.106/32" ] #security group expects list only
+bastion_node_cidr     = [ "172.31.29.106/32" ] #security group expects list only /32 means one ip

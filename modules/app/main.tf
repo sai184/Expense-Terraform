@@ -33,6 +33,56 @@ resource "aws_security_group" "security_group" {
 }
 
 
+resource "aws_iam_role" "role" {
+  name = "${var.env}-${var.component}-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      },
+    ]
+  })
+
+  inline_policy {
+    name = "${var.env}-${var.component}-policy"
+
+    policy = jsonencode({
+      "Version" : "2012-10-17",
+      "Statement" : [
+        {
+          "Sid" : "VisualEditor0",
+          "Effect" : "Allow",
+          "Action" : [
+            "ssm:DescribeParameters",
+            "ssm:GetParameterHistory",
+            "ssm:GetParametersByPath",
+            "ssm:GetParameters",
+            "ssm:GetParameter"
+          ],
+          "Resource" : "*"
+        }
+      ]
+    })
+  }
+
+  tags = {
+    tag-key = "${var.env}-${var.component}-role"         #this role i am attaching to my ec2 instance like frontend etc.
+  }
+}
+
+resource "aws_iam_instance_profile" "instance_profile" {
+  name = "${var.env}-${var.component}-role"                   #for roles when you create manually we will get instance profiles for that we need to enable in automation also
+  role = aws_iam_role.role.name
+}                                                             #this instance profile will be used for ec2 not for IAM
+
+
 
 
 resource "aws_launch_template" "template" {
@@ -41,9 +91,9 @@ resource "aws_launch_template" "template" {
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.security_group.id]
 
-#  iam_instance_profile {
-#    name = aws_iam_instance_profile.instance_profile.name
-#  }
+ iam_instance_profile {
+   name = aws_iam_instance_profile.instance_profile.name
+ }
 
   user_data = base64encode(templatefile("${path.module}/userdata.sh", {
     role_name = var.component,
