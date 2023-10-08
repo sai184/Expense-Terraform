@@ -20,7 +20,7 @@ module "vpc" {
   subnets           = module.vpc.public_subnets
   vpc_id            = module.vpc.vpc_id
    dns_name         = "frontend-${var.env}.rdevopsb72online.online"
-   zone_id          = "Z"
+   zone_id          = "Z00468253CUIDTZTPB0D"
  }
 
 module "private-lb" {
@@ -32,7 +32,7 @@ module "private-lb" {
   subnets           = module.vpc.private_subnets
   vpc_id            = module.vpc.vpc_id
   dns_name          = "backend-${var.env}.rdevopsb72online.online"
-  zone_id           = "Z"
+  zone_id           = "Z00468253CUIDTZTPB0D"
 }
 
 module "frontend" {
