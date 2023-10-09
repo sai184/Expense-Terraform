@@ -21,6 +21,7 @@ module "vpc" {
   vpc_id            = module.vpc.vpc_id
    dns_name         = "frontend-${var.env}.rdevopsb72online.online"
    zone_id          = "Z00468253CUIDTZTPB0D"
+   tg_arn            = module.frontend.tg_arn
  }
 
 module "private-lb" {
@@ -33,6 +34,7 @@ module "private-lb" {
   vpc_id            = module.vpc.vpc_id
   dns_name          = "backend-${var.env}.rdevopsb72online.online"
   zone_id           = "Z00468253CUIDTZTPB0D"
+  tg_arn            = module.backend.tg_arn
 }
 
 module "frontend" {
