@@ -137,11 +137,11 @@ resource "aws_lb_target_group" "tg" {
   vpc_id   = var.vpc_id                             #creating  target group for private load balancer
   health_check {
     enabled             = true
-    healthy_threshold   = 2
-    interval            = 5
-    unhealthy_threshold = 2                       #
+    healthy_threshold   = 2 #how many times it will go and detect
+    interval            = 5  #reg response time
+    unhealthy_threshold = 2                       # how fast it detects healthy is also important so healthy modules using
     port                = var.app_port
-    path                = "/health"
+    path                = "/health"  #end point
     timeout             = 3
   }
 }
