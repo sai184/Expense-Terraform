@@ -56,7 +56,7 @@ module "frontend" {
 module "backend" {
   depends_on        = [module.mysql]        #application is starting before the database so thats why we wrote depends after mysql module is created only backend will excute
   source            = "./modules/app"
-  app_port          = 80
+  app_port          = 8080
   component         = "backend"
   env               = var.env
   instance_type     = "t3.micro"
