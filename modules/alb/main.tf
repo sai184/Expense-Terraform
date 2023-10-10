@@ -14,6 +14,14 @@ resource "aws_security_group" "security_group" {
 
   }
 
+  ingress {
+    description = "HTTPS"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = [var.alb_sg_allow_cidr]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
