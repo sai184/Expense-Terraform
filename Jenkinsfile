@@ -7,7 +7,7 @@ pipeline{
      parameters {
        choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Choose Environment')
        choice(name: 'ACTION', choices: ['apply', 'destroy'], description: 'Choose Action')
-    // choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+
      }
 
    stages {
